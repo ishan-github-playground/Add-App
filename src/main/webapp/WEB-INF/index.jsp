@@ -24,6 +24,7 @@
             <h4 class="pt-2">speed.lk</h4>
             <i class="bi bi-emoji-smile-fill fs-2 text-warning"></i>
         </header>
+    </form >
         <main>
             <table class="mt-2 table table-bordered table-hover">
                 <thead>
@@ -36,8 +37,9 @@
                 <c:forEach var="add" items="${addList}">
                     <tr>
                         <td><img class="profile-picture"
-                                 src="${empty add.pictureUrl ? 'img/avatar.png': add.pictureUrl}"></td>
-                        <td>${add.name}</td>
+                                 src="${empty add.pictureUrl ? 'img/avatar.png': add.pictureUrl}" alt=""></td>
+                        <td><form action="details"><input type="" name="id" value="${add.id}">${add.name}<div>${add.description}</div>
+                            <div>${add.price}</div><button type="submit">info >></button></form></td>
                     </tr>
 
                 </c:forEach>
@@ -52,8 +54,9 @@
                     </tfoot>
                 </c:if>
             </table>
+
         </main>
-    </form>
+
 
 
 </body>

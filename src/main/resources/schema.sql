@@ -1,4 +1,5 @@
 CREATE TABLE add_table(
+    id INT AUTO_INCREMENT PRIMARY KEY ,
     name VARCHAR(200) NOT NULL ,
     description VARCHAR(500) NOT NULL ,
     price VARCHAR(100) NOT NULL ,

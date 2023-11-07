@@ -34,11 +34,13 @@ public class AddServlet extends HttpServlet {
             String picturePath=uploadsDirPath+imageID;
             try {
 
-                PreparedStatement stmAdd = connection.prepareStatement("INSERT INTO add_table(name, description, price, path) VALUES (?,?,?,?)");
+                PreparedStatement stmAdd = connection.prepareStatement("INSERT INTO add_table(name, description, price, path) VALUES (?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+
                 stmAdd.setString(1, name);
                 stmAdd.setString(2, description);
                 stmAdd.setString(3, price);
                 stmAdd.setString(4, "uploads/" + imageID);
+
                 stmAdd.executeUpdate();
 
                 System.out.println(picturePath);
@@ -70,11 +72,12 @@ public class AddServlet extends HttpServlet {
             ResultSet rst = stm.executeQuery("SELECT * FROM add_table");
             ArrayList<Add> addList = new ArrayList<>();
             while (rst.next()){
+                int id = rst.getInt("id");
                 String name = rst.getString("name");
                 String description = rst.getString("description");
                 String price = rst.getString("price");
                 String path = rst.getString("path");
-                addList.add(new Add(name,description,price,path));
+                addList.add(new Add(id,name,description,price,path));
             }
             req.setAttribute("addList",addList);
             getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req,resp);

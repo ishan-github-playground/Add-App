@@ -11,6 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 
 public class Add implements Serializable {
+    private int id;
     private String name;
     private String description;
     private String price;
